@@ -17,4 +17,13 @@ async function run() {
     }
 }
 
+exports.executeQuery = async function(req, res, next){
+    try {
+        const [result] = await pool.query(req.query);
+        return result;
+    } catch (error) {
+        console.error('Error executing query:', error);
+    }
+}
+
 run();
