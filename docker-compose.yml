@@ -1,0 +1,20 @@
+version: "3.7"
+name: 2d-ungeon-service
+
+services:
+  node:
+    container_name: node
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+
+  mysql:
+    container_name: mysql
+    image: mysql:latest
+    ports:
+      - "8001:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    
