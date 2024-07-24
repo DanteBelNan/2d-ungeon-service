@@ -6,6 +6,10 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.node
+    ports: 
+      - "3000:3000"
+    volumes:
+      - .:/app
 
   mysql:
     container_name: mysql
@@ -16,4 +20,3 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
-    
