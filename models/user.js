@@ -1,19 +1,20 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-
-const UserSchema = new Schema({
+const User = {
    user_id: {
-    type: Number
+      type: Number
    },
    username: {
-    type: String
+      type: String
    },
    email: {
-    type: String,
-    //validate: [new function(), 'Validame']
+      type: String
    },
+   //Validar que email sea valido
    password: {
-    type: String
-    //validate: [new function(), 'Validame']
+      type: String
    }
-})
+   //Validar que pwd sea valida
+}
+
+module.exports = {
+   User
+}
