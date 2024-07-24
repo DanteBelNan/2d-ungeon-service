@@ -4,26 +4,19 @@ require('dotenv').config()
 const pool = mysql.createPool({
     host: 'mysql',
     user: 'root',
+    port: 3306,
     password: process.env.DB_PASSWORD,
     database: 'main'
 }).promise()
 
-async function run() {
-    try {
-        const [result] = await pool.query("SHOW TABLES;");
-        console.log(result);
-    } catch (error) {
-        console.error('Error executing query:', error);
-    }
-}
 
-exports.executeQuery = async function(req, res, next){
+async function executeQuery(query, params = []){
     try {
-        const [result] = await pool.query(req.query);
+        const [result] = await pool.query(query, params);
         return result;
-    } catch (error) {
-        console.error('Error executing query:', error);
+    } catch (err) {
+        throw err
     }
 }
 
-run();
+module.exports = { executeQuery };
