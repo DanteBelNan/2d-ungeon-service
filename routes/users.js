@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const usersController = require("../controllers/usersController.js");
+const usersController = require("../Controllers/usersController.js");
 
 // @route   GET /users
 // @desc    Find Users
@@ -11,8 +11,7 @@ router.get("/",
 // @route   GET /users/me
 // @desc    Retreives a User by access token
 router.get("/me",
-	//usersController.getUserByToken
-    usersController.getAllTables
+	usersController.getUserByToken
 );
 
 // @route   POST /users
